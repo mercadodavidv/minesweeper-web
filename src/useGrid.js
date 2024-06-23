@@ -38,7 +38,7 @@ export function useGrid(columns = 10, rows = 10, mines = 10) {
         const currentCell = grid[y]?.[x];
 
         // Base case.
-        if (currentCell?.nearbyMineCount > 0) {
+        if (currentCell?.nearbyMineCount > 0 || currentCell?.isMined) {
           return;
         }
 
