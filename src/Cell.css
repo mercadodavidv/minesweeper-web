@@ -1,4 +1,9 @@
 .cell {
   width: 2rem;
   height: 2rem;
+  cursor: pointer;
+}
+
+.cell.revealed {
+  cursor: unset;
 }

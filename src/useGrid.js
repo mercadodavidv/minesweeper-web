@@ -1,8 +1,15 @@
 import { useCallback, useState } from 'react';
 import { randomInt } from './utils.js';
 
+// Relative coordinates that surround a cell.
+const surroundingDirections = [
+  [-1, -1], [0, -1], [1, -1],
+  [-1, 0],           [1, 0],
+  [-1, 1],  [0, 1],  [1, 1],
+];
+
 function initializeCell(colIdx, rowIdx) {
-  return Object({ isRevealed: false, isMined: false, colIdx: colIdx, rowIdx: rowIdx });
+  return Object({ isRevealed: false, isMined: false, colIdx: colIdx, rowIdx: rowIdx, nearbyMineCount: 0 });
 }
 
 function initializeGrid(rows = 10, columns = 10, mines = 10) {
@@ -11,6 +18,12 @@ function initializeGrid(rows = 10, columns = 10, mines = 10) {
     const randomX = randomInt(0, columns);
     const randomY = randomInt(0, rows);
     grid[randomY][randomX].isMined = true;
+    surroundingDirections.forEach(direction => {
+      const adjacentCell = grid[randomY + direction[1]]?.[randomX + direction[0]];
+      if (adjacentCell) {
+        adjacentCell.nearbyMineCount += 1;
+      }
+    });
   }
   return grid;
 }

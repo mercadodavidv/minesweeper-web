@@ -8,17 +8,24 @@ function Cell({ cell, revealCell }) {
   });
 
   const revealedStyle = useMemo(() => ({
-    'bg-primary': !cell?.isRevealed,
-    'bg-primary-subtle': cell?.isRevealed && !cell?.isMined,
-    'bg-danger': cell?.isRevealed && cell?.isMined,
-  }), [cell?.isRevealed, cell?.isMined]);
+    revealed: cell.isRevealed,
+    'bg-primary': !cell.isRevealed,
+    'bg-primary-subtle': cell.isRevealed && !cell.isMined,
+    'bg-danger': cell.isRevealed && cell.isMined,
+  }), [cell.isRevealed, cell.isMined]);
 
   return (
     <>
       <div
-        className={classNames('cell rounded-1', revealedStyle)}
+        className={classNames('cell rounded-1 position-relative', revealedStyle)}
         onClick={handleClick}
-      />
+      >
+        {cell.isRevealed && !cell.isMined && cell.nearbyMineCount > 0 &&
+          <span className='position-absolute start-50 top-50 translate-middle pe-none'>
+            <strong>{cell.nearbyMineCount}</strong>
+          </span>
+        }
+      </div>
     </>
   );
 }
