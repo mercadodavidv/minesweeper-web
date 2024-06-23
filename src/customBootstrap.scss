@@ -1,0 +1,29 @@
+// Include functions first to manipulate colors, SVGs, calc, etc.
+@import "~bootstrap/scss/functions";
+
+// Redefine some default functions and variables since we can't use them from _variables.scss just yet.
+
+$sandblue: rgb(120 175 240) !default;
+
+$sandblue-100: tint-color($sandblue, 80%) !default;
+$sandblue-200: tint-color($sandblue, 60%) !default;
+$sandblue-300: tint-color($sandblue, 40%) !default;
+$sandblue-400: tint-color($sandblue, 20%) !default;
+$sandblue-500: $sandblue !default;
+$sandblue-600: shade-color($sandblue, 20%) !default;
+$sandblue-700: shade-color($sandblue, 40%) !default;
+$sandblue-800: shade-color($sandblue, 60%) !default;
+$sandblue-900: shade-color($sandblue, 80%) !default;
+
+// Override default variables before the import.
+$primary:                $sandblue-400;
+$primary-text:           $sandblue-600;
+$primary-bg-subtle:      $sandblue-100;
+$primary-border-subtle:  $sandblue-200;
+
+$primary-text-dark:           $sandblue-300;
+$primary-bg-subtle-dark:      $sandblue-900;
+$primary-border-subtle-dark:  $sandblue-700;
+
+// Import Bootstrap and its default variables.
+@import '~bootstrap/scss/bootstrap.scss';
