@@ -1,9 +1,11 @@
-.cell {
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-}
+.ms-grid-space {
+  .cell {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
 
-.cell.revealed {
-  cursor: unset;
+  .cell.revealed {
+    cursor: unset;
+  }
 }

@@ -9,7 +9,7 @@ const surroundingDirections = [
 ];
 
 function initializeCell(x, y) {
-  return Object({ isRevealed: false, isMined: false, colIdx: x, rowIdx: y, nearbyMineCount: 0 });
+  return Object({ isRevealed: false, isMined: false, colIdx: x, rowIdx: y, nearbyMineCount: 0, isFlagged: false });
 }
 
 function initializeGrid(columns = 10, rows = 10, mines = 10) {
@@ -47,7 +47,7 @@ export function useGrid(columns = 10, rows = 10, mines = 10) {
           const adjacentX = x + direction[0];
           const adjacentY = y + direction[1];
           const adjacentCell = grid[adjacentY]?.[adjacentX];
-          if (adjacentCell && !adjacentCell.isRevealed) {
+          if (adjacentCell && !adjacentCell.isRevealed && !adjacentCell.isFlagged) {
             grid[adjacentY][adjacentX].isRevealed = true;
             revealAdjacent(adjacentX, adjacentY);
           }
@@ -60,11 +60,20 @@ export function useGrid(columns = 10, rows = 10, mines = 10) {
 
       return [...grid];
     });
-  });
+  }, []);
+
+  const flagCell = useCallback((x, y, newFlag) => {
+    setGrid(grid => {
+      // Flag the cell that was clicked.
+      grid[y][x].isFlagged = newFlag;
+
+      return [...grid];
+    });
+  }, []);
 
   const resetGrid = useCallback((columns = 10, rows = 10, mines = 10) => {
     setGrid(initializeGrid(columns, rows, mines));
-  });
+  }, []);
 
-  return [grid, revealCell, resetGrid];
+  return [grid, revealCell, flagCell, resetGrid];
 }
