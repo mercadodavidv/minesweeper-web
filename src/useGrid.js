@@ -14,9 +14,14 @@ function initializeCell(x, y) {
 
 function initializeGrid(columns = 10, rows = 10, mines = 10) {
   const grid = Array.from({ length: rows }).fill(Array.from({ length: columns })).map((row, rowIdx) => row.map((cell, colIdx) => initializeCell(colIdx, rowIdx)));
+  mines = Math.min(mines, columns * rows);
   for (let i = 0; i < mines; i++) {
     const randomX = randomInt(0, columns);
     const randomY = randomInt(0, rows);
+    if (grid[randomY][randomX].isMined === true) {
+      --i;
+      continue;
+    }
     grid[randomY][randomX].isMined = true;
     surroundingDirections.forEach(direction => {
       const adjacentCell = grid[randomY + direction[1]]?.[randomX + direction[0]];
