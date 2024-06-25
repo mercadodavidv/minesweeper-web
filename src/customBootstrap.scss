@@ -16,14 +16,14 @@ $sandblue-800: shade-color($sandblue, 60%) !default;
 $sandblue-900: shade-color($sandblue, 80%) !default;
 
 // Override default variables before the import.
-$primary:                $sandblue-400;
-$primary-text:           $sandblue-600;
-$primary-bg-subtle:      $sandblue-100;
-$primary-border-subtle:  $sandblue-200;
+$primary:                    $sandblue-400;
+$primary-text:               $sandblue-600;
+$primary-bg-subtle:          $sandblue-100;
+$primary-border-subtle:      $sandblue-200;
 
-$primary-text-dark:           $sandblue-300;
-$primary-bg-subtle-dark:      $sandblue-900;
-$primary-border-subtle-dark:  $sandblue-700;
+$primary-text-dark:          $sandblue-300;
+$primary-bg-subtle-dark:     $sandblue-900;
+$primary-border-subtle-dark: $sandblue-700;
 
 // Import Bootstrap and its default variables.
 @import '~bootstrap/scss/bootstrap.scss';
