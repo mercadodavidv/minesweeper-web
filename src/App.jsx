@@ -10,7 +10,7 @@ function App() {
         <div className='position-absolute start-50 top-50 translate-middle-x' style={{ display: 'grid', grid: `auto-flow / repeat(${grid.length}, auto)`, gap: '0.5rem' }}>
           {grid.map((row, rowIdx) =>
             row.map((cell, colIdx) =>
-              <Cell key={rowIdx + colIdx} className='d-inline' cell={cell} revealCell={revealCell} flagCell={flagCell} />
+              <Cell key={`${rowIdx}-${colIdx}`} className='d-inline' cell={cell} revealCell={revealCell} flagCell={flagCell} />
             )
           )}
         </div>
